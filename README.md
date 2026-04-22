@@ -6,11 +6,11 @@ Dự án ứng dụng các kiến thức Mật mã học vào lập trình thự
 
 *Lưu ý: Giảng viên sẽ check lịch sử commit. Nếu ai không có commit, người đó 0 điểm.*
 
-1. **[Tên Bạn] (Team Leader/DevOps):** Thiết lập Git, setup khung ReactJS & NodeJS, cấu hình kết nối API, duyệt code (Merge PR).
-2. **[Tên TV 2] (Frontend React):** Xây dựng giao diện (UI/UX), làm Form nhập liệu, gọi API và hiển thị kết quả.
-3. **[Tên TV 3] (Backend Crypto 1):** Xử lý logic API cho Mật mã đối xứng (AES, DES, 3DES) và Hàm băm (MD5, SHA-256).
-4. **[Tên TV 4] (Backend Crypto 2):** Xử lý logic API cho Mật mã RSA (Tạo Key Pair, Mã hóa, Giải mã).
-5. **[Tên TV 5] (QA & Error Handling):** Viết logic bắt lỗi (try...catch) trên cả Node và React để app không bị crash khi user nhập sai, viết báo cáo tổng kết.
+1. **[Nguyễn Đình Thiện] (Team Leader/DevOps):** Thiết lập Git, setup khung ReactJS & NodeJS, cấu hình kết nối API, duyệt code (Merge PR).
+2. **[Trần Hưng Thịnh] (Frontend React):** Xây dựng giao diện (UI/UX), làm Form nhập liệu, gọi API và hiển thị kết quả.
+3. **[Trương Đình Thiện] (Backend Crypto 1):** Xử lý logic API cho Mật mã đối xứng (AES, DES, 3DES) và Hàm băm (MD5, SHA-256).
+4. **[Nguyễn Minh Tâm] (Backend Crypto 2):** Xử lý logic API cho Mật mã RSA (Tạo Key Pair, Mã hóa, Giải mã).
+5. **[Phạm Quốc Thắng] (QA & Error Handling):** Viết logic bắt lỗi (try...catch) trên cả Node và React để app không bị crash khi user nhập sai, viết báo cáo tổng kết.
 
 Chuẩn luôn! Một thiếu sót cực kỳ nguy hiểm. Nếu không chỉ cho mọi người cách lấy code về (clone) ở bước đầu tiên, họ sẽ không biết bắt đầu từ đâu. 
 
