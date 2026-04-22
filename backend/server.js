@@ -1,18 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const cryptoController = require('./controllers/cryptoController');
 
 const app = express();
-const PORT = 5000;
-
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// API Test cơ bản
-app.get('/api/test', (req, res) => {
-    res.json({ message: "Backend NodeJS đã kết nối thành công!" });
-});
 
-app.listen(PORT, () => {
-    console.log(`Server đang chạy tại http://localhost:${PORT}`);
-});
+app.get('/api/crypto/gen-key', cryptoController.getKey);
+app.post('/api/crypto/encrypt', cryptoController.handleEncrypt);
+app.post('/api/crypto/decrypt', cryptoController.handleDecrypt);
+app.post('/api/crypto/hash', cryptoController.handleHash);
+
+app.listen(5000, () => console.log("Backend Running on Port 5000"));
