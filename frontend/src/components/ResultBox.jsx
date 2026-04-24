@@ -1,10 +1,8 @@
-import React from 'react';
-
-function ResultBox({ label, result }) {
+function ResultBox({ label, result, onReset }) {
   const handleCopy = () => {
     if (result) {
       navigator.clipboard.writeText(result);
-      alert("Đã copy vào bộ nhớ tạm!");
+      alert("Đã copy!");
     }
   };
 
@@ -12,13 +10,13 @@ function ResultBox({ label, result }) {
     <div className="result-area">
       <div className="result-header">
         <span>{label}:</span>
-        <button type="button" className="btn-copy" onClick={handleCopy}>
-          📋 Copy
-        </button>
+        <div style={{display: 'flex', gap: '5px'}}>
+           <button type="button" className="btn-copy" onClick={handleCopy}>📋 Copy</button>
+           {/* Nút Try Again để reset form theo UX Flow */}
+           <button type="button" className="btn-copy" onClick={onReset}>🔄 Try Again</button>
+        </div>
       </div>
-      <div className="result-content">
-        {result || "Chưa có kết quả..."}
-      </div>
+      <div className="result-content">{result || "Chờ xử lý..."}</div>
     </div>
   );
 }

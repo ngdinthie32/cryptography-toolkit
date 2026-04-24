@@ -37,6 +37,14 @@ function AsymmetricForm() {
     } catch (err) { setResult("Lỗi: Giải mã thất bại (Sai Private Key hoặc Ciphertext)!"); }
   };
 
+  //try again
+  const handleReset = () => {
+    setPublicKey('');
+    setPrivateKey('');
+    setText('');
+    setResult('');
+  };
+
   return (
     <div className="form-card">
       <button onClick={generateKeys} className="btn-gen" style={{marginBottom: '15px'}}>
@@ -63,7 +71,7 @@ function AsymmetricForm() {
         <button onClick={handleDecrypt} className="btn-submit" style={{backgroundColor: '#e67e22'}}>Giải mã RSA</button>
       </div>
 
-      <ResultBox label="Kết quả RSA" result={result} />
+      <ResultBox label="Kết quả RSA" result={result} onReset={handleReset}/>
     </div>
   );
 }
