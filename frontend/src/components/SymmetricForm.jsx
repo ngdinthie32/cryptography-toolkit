@@ -56,7 +56,7 @@ function SymmetricForm() {
           </select>
         </div>
 
-        <button type="submit" className="btn-submit">Nút Submit</button>
+        <button type="submit" className="btn-submit">Submit</button>
       </form>
 
       <ResultBox label="Ciphertext" result={result} />
