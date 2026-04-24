@@ -3,7 +3,7 @@ const cors = require('cors');
 
 // Controllers
 const cryptoController = require('./controllers/cryptoController');
-const rsaController = require('./rsa.controller');
+const rsaController = require('./controllers/rsaController');
 
 const app = express();
 const PORT = 5000;

@@ -12,9 +12,6 @@ Dự án ứng dụng các kiến thức Mật mã học vào lập trình thự
 4. **[Nguyễn Minh Tâm] (Backend Crypto 2):** Xử lý logic API cho Mật mã RSA (Tạo Key Pair, Mã hóa, Giải mã).
 5. **[Phạm Quốc Thắng] (QA & Error Handling):** Viết logic bắt lỗi (try...catch) trên cả Node và React để app không bị crash khi user nhập sai, viết báo cáo tổng kết.
 
-Chuẩn luôn! Một thiếu sót cực kỳ nguy hiểm. Nếu không chỉ cho mọi người cách lấy code về (clone) ở bước đầu tiên, họ sẽ không biết bắt đầu từ đâu. 
-
-Bạn hãy copy đoạn bổ sung này và chèn vào file `README.md` (ngay phía trên phần *Quy trình làm việc với Git* nhé):
 
 ## Hướng dẫn lấy code về máy 
 

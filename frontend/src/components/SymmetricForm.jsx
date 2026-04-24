@@ -6,7 +6,7 @@ function SymmetricForm() {
   const [plaintext, setPlaintext] = useState('');
   const [key, setKey] = useState('');
   const [algo, setAlgo] = useState('AES');
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState('false');
 
   // Hàm sinh Key ngẫu nhiên (UX nâng cao)
   const generateKey = () => {
