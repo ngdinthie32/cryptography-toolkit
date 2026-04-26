@@ -12,9 +12,30 @@ const generateRandomKey = (length = 16) => {
 };
 
 const encryptSymmetric = (text, key, algorithm) => {
-    if (algorithm === 'AES') return CryptoJS.AES.encrypt(text, key).toString();
-    if (algorithm === 'DES') return CryptoJS.DES.encrypt(text, key).toString();
-    if (algorithm === 'TripleDES') return CryptoJS.TripleDES.encrypt(text, key).toString();
+    // Validate key size
+    const keyLength = key.length;
+    
+    if (algorithm === 'AES') {
+        if (![16, 24, 32].includes(keyLength)) {
+            throw new Error(`AES yêu cầu key có độ dài 16, 24 hoặc 32 ký tự (hiện tại: ${keyLength})`);
+        }
+        return CryptoJS.AES.encrypt(text, key).toString();
+    }
+    
+    if (algorithm === 'DES') {
+        if (keyLength !== 8) {
+            throw new Error(`DES yêu cầu key có độ dài 8 ký tự (hiện tại: ${keyLength})`);
+        }
+        return CryptoJS.DES.encrypt(text, key).toString();
+    }
+    
+    if (algorithm === 'TripleDES') {
+        if (keyLength !== 24) {
+            throw new Error(`TripleDES yêu cầu key có độ dài 24 ký tự (hiện tại: ${keyLength})`);
+        }
+        return CryptoJS.TripleDES.encrypt(text, key).toString();
+    }
+    
     throw new Error("Thuật toán mã hóa không hợp lệ hoặc không được hỗ trợ");
 };
 
