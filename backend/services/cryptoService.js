@@ -12,6 +12,8 @@ const generateRandomKey = (length = 16) => {
 };
 
 const encryptSymmetric = (text, key, algorithm) => {
+    console.log('[DEBUG] encryptSymmetric called:', { text: text.substring(0, 10), keyLength: key.length, algorithm });
+    
     // Validate key size
     const keyLength = key.length;
     
