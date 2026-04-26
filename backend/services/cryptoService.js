@@ -18,9 +18,13 @@ const encryptSymmetric = (text, key, algorithm) => {
     const keyLength = key.length;
     
     if (algorithm === 'AES') {
+        console.log('[DEBUG] AES algorithm detected');
+        console.log('[DEBUG] Checking key length:', keyLength, '- should be one of [16, 24, 32]');
         if (![16, 24, 32].includes(keyLength)) {
-            throw new Error(`AES yêu cầu key có độ dài 16, 24 hoặc 32 ký tự (hiện tại: ${keyLength})`);
+            console.log('[DEBUG] KEY VALIDATION FAILED! Throwing error...');
+            throw new Error(`AES require key length 16, 24 or 32 (current: ${keyLength})`);
         }
+        console.log('[DEBUG] Key validation passed');
         return CryptoJS.AES.encrypt(text, key).toString();
     }
     
