@@ -12,6 +12,12 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
+// Log all requests
+app.use((req, res, next) => {
+    console.log(`[REQUEST] ${req.method} ${req.path}`, { body: req.body });
+    next();
+});
+
 console.log('[SERVER] Controllers loaded:', { cryptoController, rsaController });
 
 // ===== Crypto APIs =====
