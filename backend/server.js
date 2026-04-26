@@ -12,10 +12,16 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
+console.log('[SERVER] Controllers loaded:', { cryptoController, rsaController });
+
 // ===== Crypto APIs =====
+console.log('[SERVER] Registering /api/crypto/gen-key endpoint');
 app.get('/api/crypto/gen-key', cryptoController.getKey);
+console.log('[SERVER] Registering /api/crypto/encrypt endpoint');
 app.post('/api/crypto/encrypt', cryptoController.handleEncrypt);
+console.log('[SERVER] Registering /api/ crypto/decrypt endpoint');
 app.post('/api/crypto/decrypt', cryptoController.handleDecrypt);
+console.log('[SERVER] Registering /api/crypto/hash endpoint');
 app.post('/api/crypto/hash', cryptoController.handleHash);
 
 // ===== RSA APIs =====
