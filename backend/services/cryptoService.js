@@ -12,27 +12,26 @@ const generateRandomKey = (length = 16) => {
 };
 
 const encryptSymmetric = (text, key, algorithm) => {
-    throw new Error("TEST: Function was called!");
     // Validate key size FIRST before any encryption
     const keyLength = key.length;
     
     if (algorithm === 'AES') {
         if (![16, 24, 32].includes(keyLength)) {
-            throw new Error(`Key size invalid for AES! Must be 16, 24 or 32 characters. Got ${keyLength}.`);
+            throw new Error(`Invalid key size for AES! Must be 16, 24 or 32 characters. Got ${keyLength}.`);
         }
         return CryptoJS.AES.encrypt(text, key).toString();
     }
     
     if (algorithm === 'DES') {
         if (keyLength !== 8) {
-            throw new Error(`Key size invalid for DES! Must be 8 characters. Got ${keyLength}.`);
+            throw new Error(`Invalid key size for DES! Must be 8 characters. Got ${keyLength}.`);
         }
         return CryptoJS.DES.encrypt(text, key).toString();
     }
     
     if (algorithm === 'TripleDES') {
         if (keyLength !== 24) {
-            throw new Error(`Key size invalid for TripleDES! Must be 24 characters. Got ${keyLength}.`);
+            throw new Error(`Invalid key size for TripleDES! Must be 24 characters. Got ${keyLength}.`);
         }
         return CryptoJS.TripleDES.encrypt(text, key).toString();
     }
