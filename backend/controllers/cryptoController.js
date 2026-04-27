@@ -3,7 +3,9 @@ const cryptoService = require('../services/cryptoService');
 exports.getKey = (req, res) => {
     try {
         const { algorithm } = req.query;
+        console.log('[DEBUG] getKey called with algorithm:', algorithm);
         const key = cryptoService.generateRandomKey(algorithm || 'AES');
+        console.log('[DEBUG] Generated key length:', key.length, 'for algorithm:', algorithm);
         res.json({ success: true, key });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
