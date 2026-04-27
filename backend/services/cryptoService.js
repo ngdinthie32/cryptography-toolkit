@@ -1,14 +1,19 @@
 const CryptoJS = require("crypto-js");
 
 
-const generateRandomKey = (length = 16) => {
-    const size = parseInt(length);
-
-    if (isNaN(size) || size <= 0) {
-        throw new Error("Độ dài key không hợp lệ (phải là số nguyên dương)");
+const generateRandomKey = (algorithm = 'AES') => {
+    let length = 16; // default AES
+    
+    if (algorithm === 'DES') {
+        length = 8;
+    } else if (algorithm === 'TripleDES' || algorithm === '3DES') {
+        length = 24;
+    } else if (algorithm === 'AES') {
+        length = 16;
     }
-
-    return CryptoJS.lib.WordArray.random(size).toString();
+    
+    const key = CryptoJS.lib.WordArray.random(length).toString();
+    return key;
 };
 
 const encryptSymmetric = (text, key, algorithm) => {

@@ -5,13 +5,19 @@ import ResultBox from './ResultBox';
 function SymmetricForm() {
   const [text, setText] = useState('');
   const [key, setKey] = useState('');
-  const [algo, setAlgo] = useState('AES');
+  const [algo, setAlgo] = useState(''); // Default empty - user must select
   const [result, setResult] = useState('');
 
-  // 1. Sinh Key từ backend
+  // 1. Sinh Key từ backend theo algorithm đã chọn
   const generateKey = async () => {
+    if (!algo) {
+      alert("Vui lòng chọn thuật toán trước!");
+      return;
+    }
     try {
-      const res = await axios.get('http://localhost:5000/api/crypto/gen-key');
+      const res = await axios.get('http://localhost:5000/api/crypto/gen-key', {
+        params: { algorithm: algo === '3DES' ? 'TripleDES' : algo }
+      });
       // Backend trả về { success: true, key: "..." }
       setKey(res.data.key); 
     } catch (err) { 
@@ -22,6 +28,10 @@ function SymmetricForm() {
   // 2. Xử lý Mã hóa
   const handleEncrypt = async (e) => {
     e.preventDefault();
+    if (!algo) {
+      alert("Vui lòng chọn thuật toán!");
+      return;
+    }
     try {
       const res = await axios.post('http://localhost:5000/api/crypto/encrypt', {
         text: text, 
@@ -36,6 +46,10 @@ function SymmetricForm() {
 
   // 3. Xử lý Giải mã
   const handleDecrypt = async () => {
+    if (!algo) {
+      alert("Vui lòng chọn thuật toán!");
+      return;
+    }
     if (!text || !key) {
       alert("Vui lòng nhập đầy đủ Nội dung và Key!");
       return;
@@ -88,7 +102,8 @@ function SymmetricForm() {
 
         <div className="form-group">
           <label>Thuật toán (Symmetric)</label>
-          <select value={algo} onChange={(e) => setAlgo(e.target.value)}>
+          <select value={algo} onChange={(e) => setAlgo(e.target.value)} required>
+            <option value="">-- Chọn thuật toán --</option>
             <option value="AES">AES</option>
             <option value="DES">DES</option>
             <option value="3DES">3DES (TripleDES)</option>
