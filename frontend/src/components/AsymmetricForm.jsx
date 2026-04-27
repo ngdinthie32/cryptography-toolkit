@@ -19,6 +19,10 @@ function AsymmetricForm() {
 
   // 2. API Mã hóa (Dùng Public Key)
   const handleEncrypt = async () => {
+    if (!text || !publicKey) {
+      setResult("Lỗi: Vui lòng nhập đầy đủ Nội dung và Public Key!");
+      return;
+    }
     try {
       const res = await axios.post('http://localhost:5000/api/rsa/encrypt', {
         publicKey, plaintext: text
@@ -29,6 +33,10 @@ function AsymmetricForm() {
 
   // 3. API Giải mã (Dùng Private Key)
   const handleDecrypt = async () => {
+    if (!text || !privateKey) {
+      setResult("Lỗi: Vui lòng nhập đầy đủ Ciphertext và Private Key!");
+      return;
+    }
     try {
       const res = await axios.post('http://localhost:5000/api/rsa/decrypt', {
         privateKey, ciphertext: text
