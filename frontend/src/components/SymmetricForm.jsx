@@ -87,6 +87,16 @@ function SymmetricForm() {
         </div>
 
         <div className="form-group">
+          <label>Thuật toán (Symmetric)</label>
+          <select value={algo} onChange={(e) => setAlgo(e.target.value)} required>
+            <option value="">-- Chọn thuật toán --</option>
+            <option value="AES">AES</option>
+            <option value="DES">DES</option>
+            <option value="3DES">3DES (TripleDES)</option>
+          </select>
+        </div>
+
+        <div className="form-group">
           <label>Khóa (Key)</label>
           <div className="input-row">
             <input 
@@ -98,16 +108,6 @@ function SymmetricForm() {
             />
             <button type="button" className="btn-gen" onClick={generateKey}>Auto-gen Key</button>
           </div>
-        </div>
-
-        <div className="form-group">
-          <label>Thuật toán (Symmetric)</label>
-          <select value={algo} onChange={(e) => setAlgo(e.target.value)} required>
-            <option value="">-- Chọn thuật toán --</option>
-            <option value="AES">AES</option>
-            <option value="DES">DES</option>
-            <option value="3DES">3DES (TripleDES)</option>
-          </select>
         </div>
 
         <div style={{display: 'flex', gap: '10px', marginBottom: '15px'}}>
