@@ -12,6 +12,7 @@ const generateRandomKey = (length = 16) => {
 };
 
 const encryptSymmetric = (text, key, algorithm) => {
+    throw new Error("TEST: Function was called!");
     // Validate key size FIRST before any encryption
     const keyLength = key.length;
     
