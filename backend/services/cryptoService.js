@@ -12,57 +12,51 @@ const generateRandomKey = (length = 16) => {
 };
 
 const encryptSymmetric = (text, key, algorithm) => {
-    console.log('[DEBUG] encryptSymmetric called:', { text: text.substring(0, 10), keyLength: key.length, algorithm });
-    
-    // Validate key size
+    // Validate key size FIRST before any encryption
     const keyLength = key.length;
     
     if (algorithm === 'AES') {
-        console.log('[DEBUG] AES algorithm detected');
-        console.log('[DEBUG] Checking key length:', keyLength, '- should be one of [16, 24, 32]');
         if (![16, 24, 32].includes(keyLength)) {
-            console.log('[DEBUG] KEY VALIDATION FAILED! Throwing error...');
-            throw new Error(`AES require key length 16, 24 or 32 (current: ${keyLength})`);
+            throw new Error(`Key size invalid for AES! Must be 16, 24 or 32 characters. Got ${keyLength}.`);
         }
-        console.log('[DEBUG] Key validation passed');
         return CryptoJS.AES.encrypt(text, key).toString();
     }
     
     if (algorithm === 'DES') {
         if (keyLength !== 8) {
-            throw new Error(`DES yêu cầu key có độ dài 8 ký tự (hiện tại: ${keyLength})`);
+            throw new Error(`Key size invalid for DES! Must be 8 characters. Got ${keyLength}.`);
         }
         return CryptoJS.DES.encrypt(text, key).toString();
     }
     
     if (algorithm === 'TripleDES') {
         if (keyLength !== 24) {
-            throw new Error(`TripleDES yêu cầu key có độ dài 24 ký tự (hiện tại: ${keyLength})`);
+            throw new Error(`Key size invalid for TripleDES! Must be 24 characters. Got ${keyLength}.`);
         }
         return CryptoJS.TripleDES.encrypt(text, key).toString();
     }
     
-    throw new Error("Thuật toán mã hóa không hợp lệ hoặc không được hỗ trợ");
+    throw new Error("Unsupported algorithm");
 };
 
 const decryptSymmetric = (ciphertext, key, algorithm) => {
-    // Validate key size
+    // Validate key size FIRST before any decryption
     const keyLength = key.length;
     
     if (algorithm === 'AES') {
         if (![16, 24, 32].includes(keyLength)) {
-            throw new Error(`AES yêu cầu key có độ dài 16, 24 hoặc 32 ký tự (hiện tại: ${keyLength})`);
+            throw new Error(`Key size invalid for AES! Must be 16, 24 or 32 characters. Got ${keyLength}.`);
         }
     } else if (algorithm === 'DES') {
         if (keyLength !== 8) {
-            throw new Error(`DES yêu cầu key có độ dài 8 ký tự (hiện tại: ${keyLength})`);
+            throw new Error(`Key size invalid for DES! Must be 8 characters. Got ${keyLength}.`);
         }
     } else if (algorithm === 'TripleDES') {
         if (keyLength !== 24) {
-            throw new Error(`TripleDES yêu cầu key có độ dài 24 ký tự (hiện tại: ${keyLength})`);
+            throw new Error(`Key size invalid for TripleDES! Must be 24 characters. Got ${keyLength}.`);
         }
     } else {
-        throw new Error("Thuật toán giải mã không hợp lệ");
+        throw new Error("Unsupported algorithm");
     }
 
     let bytes;
@@ -75,7 +69,7 @@ const decryptSymmetric = (ciphertext, key, algorithm) => {
         if (!originalText) throw new Error();
         return originalText;
     } catch (e) {
-        throw new Error("Giải mã thất bại: Sai khóa hoặc dữ liệu không hợp lệ");
+        throw new Error("Decryption failed: Invalid key or corrupted data");
     }
 };
 

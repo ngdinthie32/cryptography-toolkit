@@ -11,18 +11,14 @@ exports.getKey = (req, res) => {
 };
 
 exports.handleEncrypt = (req, res) => {
-    console.log('[CONTROLLER] handleEncrypt called with:', req.body);
     try {
         const { text, key, algorithm } = req.body;
         if (!text || !key || !algorithm) {
-            return res.status(400).json({ success: false, message: "Missing data: text, key or algorithm is required" });
+            return res.status(400).json({ success: false, message: "Missing required fields: text, key, algorithm" });
         }
-        console.log('[CONTROLLER] Calling encryptSymmetric with:', { text: text.substring(0, 10), keyLength: key.length, algorithm });
         const result = cryptoService.encryptSymmetric(text, key, algorithm);
-        console.log('[CONTROLLER] Encrypt successful, result:', result.substring(0, 20));
         res.json({ success: true, result });
     } catch (error) {
-        console.log('[CONTROLLER] Encrypt error caught:', error.message);
         res.status(400).json({ success: false, message: error.message });
     }
 };
